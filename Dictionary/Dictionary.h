@@ -5,8 +5,8 @@ class Dictionary
 {
 public:
 	Dictionary<TKey, TValue>();
-	Dictionary<TKey, TValue>(const Dictionary<TKey, TValue>& other);
-	~Dictionary<TKey, TValue>();
+	Dictionary<TKey, TValue>(const Dictionary<TKey, TValue>& other) { *this = other; }
+	~Dictionary<TKey, TValue>() { clear(); }
 
 	/// <summary>
 	/// Deletes all items in dictionary
@@ -30,7 +30,7 @@ public:
 	/// </summary>
 	/// <param name="key"></param>
 	/// <param name="value"></param>
-	bool tryGetValue(const TKey key, const TValue& value) const;
+	bool tryGetValue(const TKey key, TValue& value) const;
 
 	/// <summary>
 	/// Creates a new item with the given key and value and adds it to the dictionary
@@ -82,7 +82,49 @@ inline Dictionary<TKey, TValue>::Dictionary()
 }
 
 template<typename TKey, typename TValue>
-inline Dictionary<TKey, TValue>::Dictionary(const Dictionary<TKey, TValue>& other)
+inline bool Dictionary<TKey, TValue>::tryGetValue(const TKey key, TValue& value) const
 {
-	
+	for (int i = 0; i < getCount(); i++)
+	{
+		if (m_items[i].itemKey == key)
+		{
+			value = m_items[i].itemValue;
+			return true;
+		}
+	}
+}
+
+template<typename TKey, typename TValue>
+inline void Dictionary<TKey, TValue>::addItem(const TKey& key, const TValue& value)
+{
+
+}
+
+template<typename TKey, typename TValue>
+inline const Dictionary<TKey, TValue>& Dictionary<TKey, TValue>::operator=(const Dictionary<TKey, TValue> other)
+{
+	clear(); //Delete all items in the dictionary
+
+	for (int i = 0; i < other.getCount(); i++)
+	{
+		m_items[i] = other.m_items[i];
+	}
+
+	m_count = other.getCount(); 
+
+	return *this;
+}
+
+template<typename TKey, typename TValue>
+inline TValue Dictionary<TKey, TValue>::operator[](const TKey key)
+{
+	return TValue();
+}
+
+template<typename TKey, typename TValue>
+inline void Dictionary<TKey, TValue>::clear()
+{
+	delete[] m_items;
+	m_items = nullptr;
+	m_count = 0;
 }
