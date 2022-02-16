@@ -97,7 +97,26 @@ inline bool Dictionary<TKey, TValue>::tryGetValue(const TKey key, TValue& value)
 template<typename TKey, typename TValue>
 inline void Dictionary<TKey, TValue>::addItem(const TKey& key, const TValue& value)
 {
+	Item* tempArray = new Item[getCount() + 1];
 
+	for (int i = 0; i < getCount(); i++)
+	{
+		tempArray[i].itemKey = m_items[i].itemKey;
+		tempArray[i].itemValue = m_items[i].itemValue;
+	}
+
+	tempArray[m_count].itemKey = key;
+	tempArray[m_count].itemValue = value;
+
+	delete[] m_items;
+	m_items = tempArray;
+	m_count++;
+}
+
+template<typename TKey, typename TValue>
+inline bool Dictionary<TKey, TValue>::remove(const TKey key)
+{
+	return false;
 }
 
 template<typename TKey, typename TValue>
@@ -118,7 +137,11 @@ inline const Dictionary<TKey, TValue>& Dictionary<TKey, TValue>::operator=(const
 template<typename TKey, typename TValue>
 inline TValue Dictionary<TKey, TValue>::operator[](const TKey key)
 {
-	return TValue();
+	TValue value;
+
+	tryGetValue(key, value);
+
+	return value;
 }
 
 template<typename TKey, typename TValue>
@@ -127,4 +150,24 @@ inline void Dictionary<TKey, TValue>::clear()
 	delete[] m_items;
 	m_items = nullptr;
 	m_count = 0;
+}
+
+template<typename TKey, typename TValue>
+inline bool Dictionary<TKey, TValue>::containsKey(const TKey object) const
+{
+	for (int i = 0; i < getCount(); i++)
+	{
+		if (m_items[i].itemKey == object)
+			return true;
+	}
+}
+
+template<typename TKey, typename TValue>
+inline bool Dictionary<TKey, TValue>::containsValue(const TValue object) const
+{
+	for (int i = 0; i < getCount(); i++)
+	{
+		if (m_items[i].itemValue == object)
+			return true;
+	}
 }
