@@ -116,7 +116,70 @@ inline void Dictionary<TKey, TValue>::addItem(const TKey& key, const TValue& val
 template<typename TKey, typename TValue>
 inline bool Dictionary<TKey, TValue>::remove(const TKey key)
 {
-	return false;
+	if (!containsKey(key))
+		return false;
+
+	bool itemRemoved = false;
+	Item* tempArray = new Item[getCount() - 1];
+	int j = 0;
+
+	for (int i = 0; i < getCount(); i++)
+	{
+		if (m_items[i].itemKey != key)
+		{
+			tempArray[j].itemKey = m_items[i].itemKey;
+			tempArray[j].itemValue = m_items[i].itemValue;
+			j++;
+		}
+		else
+		{
+			itemRemoved = true;
+		}
+	}
+
+	if (itemRemoved)
+	{
+		delete[] m_items;
+		m_items = tempArray;
+		m_count--;
+	}
+
+	return itemRemoved;
+}
+
+template<typename TKey, typename TValue>
+inline bool Dictionary<TKey, TValue>::remove(const TKey key, TValue& value)
+{
+	if (!containsKey(key))
+		return false;
+
+	bool itemRemoved = false;
+	Item* tempArray = new Item[getCount() - 1];
+	int j = 0;
+
+	for (int i = 0; i < getCount(); i++)
+	{
+		if (m_items[i].itemKey != key)
+		{
+			tempArray[j].itemKey = m_items[i].itemKey;
+			tempArray[j].itemValue = m_items[i].itemValue;
+			j++;
+		}
+		else
+		{
+			itemRemoved = true;
+			value = m_items[i].itemValue;
+		}
+	}
+
+	if (itemRemoved)
+	{
+		delete[] m_items;
+		m_items = tempArray;
+		m_count--;
+	}
+
+	return itemRemoved;
 }
 
 template<typename TKey, typename TValue>
