@@ -223,6 +223,8 @@ inline bool Dictionary<TKey, TValue>::containsKey(const TKey object) const
 		if (m_items[i].itemKey == object)
 			return true;
 	}
+
+	return false;
 }
 
 template<typename TKey, typename TValue>
@@ -233,4 +235,6 @@ inline bool Dictionary<TKey, TValue>::containsValue(const TValue object) const
 		if (m_items[i].itemValue == object)
 			return true;
 	}
+
+	return false;
 }

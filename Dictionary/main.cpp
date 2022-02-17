@@ -1,9 +1,36 @@
+#include <iostream>
 #include "Dictionary.h"
 
 int main()
 {
 	Dictionary<const char*, int> testDictionary = Dictionary<const char*, int>();
 
+	testDictionary.addItem("A", 1);
+	testDictionary.addItem("B", 2);
+	testDictionary.addItem("C", 3);
+	int value;
+
+	testDictionary.tryGetValue("C", value);
+
+	/*testDictionary.remove("B", value);*/
+
+	if (value == 3)
+		std::cout << "Success" << std::endl;
+
+	system("pause");
+
+	/*testDictionary.remove("A");*/
+	testDictionary.clear();
+
+	if (testDictionary.containsValue(2))
+		std::cout << "VALUE YES" << std::endl;
+	else
+		std::cout << "VALUE NO" << std::endl;
+
+	if (testDictionary.containsKey("A"))
+		std::cout << "KEY YES" << std::endl;
+	else
+		std::cout << "KEY NO" << std::endl;
 
 	return 0;
 }
