@@ -10,8 +10,6 @@ int main()
 	testDictionary.addItem("C", 3);
 	int value;
 
-	std::cout << "Test Case 1" << std::endl;
-
 	testDictionary.tryGetValue("C", value);
 
 	/*testDictionary.remove("B", value);*/
@@ -19,8 +17,7 @@ int main()
 	if (value == 3)
 		std::cout << "Success" << std::endl;
 
-	std::cout << "" << std::endl;
-	std::cout << "Test Case 2" << std::endl;
+	system("pause");
 
 	/*testDictionary.remove("A");*/
 	testDictionary.clear();
@@ -35,9 +32,7 @@ int main()
 	else
 		std::cout << "KEY NO" << std::endl;
 
-	/*system("pause");*/
-	std::cout << "" << std::endl;
-	std::cout << "Test Case 3" << std::endl;
+	system("pause");
 
 	testDictionary.addItem("E", 1);
 	testDictionary.addItem("F", 2);
@@ -54,6 +49,8 @@ int main()
 		std::cout << "KEY YES" << std::endl;
 	else
 		std::cout << "KEY NO" << std::endl;
+
+	system("pause");
 
 
 	return 0;
