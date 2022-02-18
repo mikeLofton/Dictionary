@@ -32,5 +32,24 @@ int main()
 	else
 		std::cout << "KEY NO" << std::endl;
 
+	system("pause");
+
+	testDictionary.addItem("E", 1);
+	testDictionary.addItem("F", 2);
+	testDictionary.addItem("G", 3);
+	testDictionary.addItem("H", 4);
+	testDictionary.addItem("I", 5);
+
+	if (testDictionary.containsValue(2))
+		std::cout << "VALUE YES" << std::endl;
+	else
+		std::cout << "VALUE NO" << std::endl;
+
+	if (testDictionary.containsKey("H"))
+		std::cout << "KEY YES" << std::endl;
+	else
+		std::cout << "KEY NO" << std::endl;
+
+
 	return 0;
 }
