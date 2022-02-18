@@ -27,7 +27,8 @@ Dictionary
 
 # II. Design
  1. *System Architecture*
-
+    
+    Dictionary.h contains the Dictionary templeted class. The Dictionary class has two typenames, TKey and TValue. Dictionary contains logic for adding and removing items to/from the items array. The dictionary can check for a specific key or value and can return values at the given key. Within the Dictionary class is the Item struct. Items can have a key and a value. main.cpp includes Dictionary.h and iostream. Main contains a test dictionary and functions can be called there for testing purposes. 
  2. *Object Information*
     * **File Name:** main.cpp
         * Name: main()
