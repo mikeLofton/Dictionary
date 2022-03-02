@@ -4,6 +4,7 @@
 int main()
 {
 	Dictionary<const char*, int> testDictionary = Dictionary<const char*, int>();
+	Dictionary<const char*, int> testDictionary2 = Dictionary<const char*, int>();
 
 	testDictionary.addItem("A", 1);
 	testDictionary.addItem("B", 2);
@@ -51,6 +52,8 @@ int main()
 		std::cout << "KEY NO" << std::endl;
 
 	system("pause");
+
+	testDictionary2 = testDictionary;
 
 
 	return 0;

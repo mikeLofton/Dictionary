@@ -14,7 +14,7 @@ public:
 	/// Copies the values of another dictionary to this one
 	/// </summary>
 	/// <param name="other"></param>
-	Dictionary<TKey, TValue>(const Dictionary<TKey, TValue>& other) { *this = other; }
+	Dictionary<TKey, TValue>(const Dictionary<TKey, TValue>& other);
 
 	///Destructor clears the dictionary
 	~Dictionary<TKey, TValue>() { clear(); }
@@ -95,6 +95,19 @@ inline Dictionary<TKey, TValue>::Dictionary()
 {
 	m_items = nullptr;
 	m_count = 0;
+}
+
+template<typename TKey, typename TValue>
+inline Dictionary<TKey, TValue>::Dictionary(const Dictionary<TKey, TValue>& other)
+{
+	clear(); //Delete all items in the dictionary
+
+	for (int i = 0; i < other.getCount(); i++) //While i is less than the other dictionary's item count
+	{
+		addItem(other.m_items[i].itemKey, other.m_items[i].itemValue); //Copy the other dictionary's data into this one
+	}
+
+	m_count = other.getCount(); //Copy the item count
 }
 
 template<typename TKey, typename TValue>
@@ -207,7 +220,7 @@ inline const Dictionary<TKey, TValue>& Dictionary<TKey, TValue>::operator=(const
 
 	for (int i = 0; i < other.getCount(); i++) //While i is less than the other dictionary's item count
 	{
-		m_items[i] = other.m_items[i]; //Copy the other dictionary's data into this one
+		addItem(other.m_items[i].itemKey, other.m_items[i].itemValue); //Copy the other dictionary's data into this one
 	}
 
 	m_count = other.getCount(); //Copy the item count
