@@ -4,11 +4,13 @@
 int main()
 {
 	Dictionary<const char*, int> testDictionary = Dictionary<const char*, int>();
+	const char* keys[10];
 	Dictionary<const char*, int> testDictionary2 = Dictionary<const char*, int>();
 
 	testDictionary.addItem("A", 1);
 	testDictionary.addItem("B", 2);
 	testDictionary.addItem("C", 3);
+	testDictionary.addItem("C", 9);
 	int value;
 
 	testDictionary.tryGetValue("C", value);

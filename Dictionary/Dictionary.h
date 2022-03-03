@@ -128,6 +128,9 @@ inline bool Dictionary<TKey, TValue>::tryGetValue(const TKey key, TValue& value)
 template<typename TKey, typename TValue>
 inline void Dictionary<TKey, TValue>::addItem(const TKey& key, const TValue& value)
 {
+	if (containsKey(key) || containsValue(value))
+		return;
+
 	Item* tempArray = new Item[getCount() + 1]; //Create a temp array with a length of the item count + 1
 
 	for (int i = 0; i < getCount(); i++) //While i is less than the item count
